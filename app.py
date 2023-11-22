@@ -13,8 +13,15 @@ def hello():
     return app.send_static_file("index.html")
 
 play_options = ["Rock", "Paper", "Scissors"]
-computer = random.choice(play_options)
 player = False
+
+def determine_winner(player, computer):
+    if player == computer:
+        print("Tie!")
+    elif (player == "Rock" and computer == "Scissors") or (player == "Paper" and computer == "Rock") or (player == "Scissors" and computer == "Paper"):
+        print("You win!", player, "beats", computer)
+    else:
+        print("You lose!", computer, "beats", player)
 
 def re_start(option):
     re_start = input(option).lower()
@@ -25,17 +32,10 @@ def re_start(option):
         print("Thanks for playing!")
         return exit()
 
-def determine_winner(player, computer):
-    if player == computer:
-        print("Tie!")
-    elif (player == "Rock" and computer == "Scissors") or (player == "Paper" and computer == "Rock") or (player == "Scissors" and computer == "Paper"):
-        print("You win!", player, "beats", computer)
-    else:
-        print("You lose!", computer, "beats", player)
-
 while player == False:
     print("Choose your weapon!")
     player = input("Rock, Paper, Scissors? ").capitalize()
+    computer = random.choice(play_options)
 
     if player in play_options:
         print("Player chose:", player)
